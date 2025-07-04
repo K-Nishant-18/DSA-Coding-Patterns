@@ -67,44 +67,6 @@ Here are the patterns I've studied, practiced, and documented. Each link takes y
 2. Move to [✅ Pattern_02 - Two Pointers](https://github.com/K-Nishant-18/DSA-Coding-Patterns/blob/main/%20Pattern%5F2%20-%20Two%20Pointers.markdown) for array manipulation
 3. Practice tree patterns ([✅ Pattern_07](https://github.com/K-Nishant-18/DSA-Coding-Patterns/blob/main/%20Pattern%5F7%20-%20Tree%20BFS.markdown) & [✅ Pattern_08](https://github.com/K-Nishant-18/DSA-Coding-Patterns/blob/main/%20Pattern%5F8%20-%20Tree%20DFS.markdown)) for hierarchical data
 
-### For Intermediate Developers:
-- Master [✅ Pattern_15 - Dynamic Programming](https://github.com/K-Nishant-18/DSA-Coding-Patterns/blob/main/%20Pattern%5F15%20-%20Dynamic%20Programming.markdown) for optimization problems
-- Practice [✅ Pattern_10 - Subsets](https://github.com/K-Nishant-18/DSA-Coding-Patterns/blob/main/%20Pattern%5F10%20-%20Subsets.markdown) for backtracking scenarios
-- Explore [✅ Pattern_12 - Bitwise XOR](https://github.com/K-Nishant-18/DSA-Coding-Patterns/blob/main/%20Pattern%5F12%20-%20Bitwise%20XOR.markdown) for low-level optimizations
-
-## 🎯 My Success Metrics
-
-- **Pattern Recognition**: Can I identify the right pattern within 2-3 minutes?
-- **Implementation Speed**: Can I code the solution in 15-20 minutes?
-- **Optimization**: Can I improve the solution's efficiency?
-- **Edge Cases**: Did I handle all boundary conditions?
-
-## 🤝 Contributing to My Learning
-
-This is my personal learning repository, but I welcome:
-- **Suggestions** for additional patterns or improvements
-- **Bug reports** in my implementations
-- **Better explanations** or examples
-- **Performance optimizations**
-
-Feel free to open issues or submit pull requests if you find ways to make this repository better!
-
-## 📚 Resources That Helped Me
-
-- **[LeetCode](https://leetcode.com)** - My primary practice platform
-- **[Educative](https://www.educative.io)** - Great for pattern-based learning
-- **[Grokking the Coding Interview](https://www.educative.io/courses/grokking-the-coding-interview)** - Excellent pattern-based course
-- **[Java Documentation](https://docs.oracle.com/en/java/javase/17/)** - Official Java reference
-
-## 🎉 My Learning Philosophy
-
-> *"Master the patterns, not the problems. Once you understand the fundamental techniques, you can adapt them to solve any variation."*
-
-This repository represents my commitment to continuous learning and improvement. Every pattern here has been tested, refined, and documented through countless hours of practice.
-
-## 🚀 Ready to Start Your Journey?
-
-Pick a pattern that interests you and dive in! Remember, the goal isn't to memorize solutions - it's to understand the underlying principles and develop pattern recognition skills.
 
 **Happy coding, and may your algorithms be efficient and your bugs be minimal!** 🎯✨
 
