@@ -186,17 +186,17 @@ Given a string, find the length of the longest substring that contains at most K
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  String: "eceba"  K = 2                              │
-│                                                       │
-│  Step 1: [e] ← Start with 'e'                        │
-│  Step 2: [ec] ← Add 'c' (2 distinct)                │
-│  Step 3: [ece] ← Add 'e' (still 2 distinct)         │
-│  Step 4: [eceb] ← Add 'b' (3 distinct - too many!)  │
-│  Step 5: [ceb] ← Remove 'e' from start              │
-│  Step 6: [ceba] ← Add 'a' (3 distinct - too many!)  │
-│  Step 7: [eba] ← Remove 'c' from start              │
-│                                                       │
-│  Longest substring: "ece" (length 3)                 │
+│  String: "eceba"  K = 2                                 │
+│                                                         │
+│  Step 1: [e] ← Start with 'e'                           │
+│  Step 2: [ec] ← Add 'c' (2 distinct)                    │
+│  Step 3: [ece] ← Add 'e' (still 2 distinct)             │
+│  Step 4: [eceb] ← Add 'b' (3 distinct - too many!)      │
+│  Step 5: [ceb] ← Remove 'e' from start                  │
+│  Step 6: [ceba] ← Add 'a' (3 distinct - too many!)      │
+│  Step 7: [eba] ← Remove 'c' from start                  │
+│                                                         │
+│  Longest substring: "ece" (length 3)                    │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -306,18 +306,21 @@ public int variableSizeWindow(int[] arr, int target) {
 
 ## 🚀 Practice Problems
 
-### Easy Level
-- [Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/)
-- [Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)
+### 🟢 Easy Level (5 Problems)
+1. **[Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/)** - Fixed-size window, find max average
+2. **[Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)** - Variable-size window, find min length
+3. **[Maximum Sum Subarray of Size K](https://leetcode.com/problems/maximum-sum-subarray-of-size-k/)** - Classic fixed-size window
+4. **[Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/)** - Sliding window with hash set
+5. **[Maximum Number of Vowels in a Substring of Given Length](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/)** - Fixed window with vowel counting
 
-### Medium Level
-- [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-- [Longest Substring with At Most K Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
-- [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+### 🟡 Medium Level (3 Problems)
+1. **[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)** - Variable window with character tracking
+2. **[Longest Substring with At Most K Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)** - Variable window with HashMap
+3. **[Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)** - Fixed window with Deque for max tracking
 
-### Hard Level
-- [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
-- [Longest Substring with At Most Two Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/)
+### 🔴 Hard Level (2 Problems)
+1. **[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)** - Variable window with character frequency
+2. **[Longest Substring with At Most Two Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/)** - Special case of K=2
 
 ## 🎨 Key Takeaways
 
