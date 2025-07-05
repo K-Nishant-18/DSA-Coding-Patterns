@@ -1,10 +1,20 @@
-# 🚶 Queues - FIFO Data Structure
+# 🚶 Queues: The FIFO Foundation
 
-## 📖 What is a Queue?
+---
 
-Imagine a line of people waiting to buy tickets at a movie theater. The first person who joined the line gets served first, and new people join at the end of the line. You can't cut in the middle or serve someone from the back. That's exactly what a **Queue** is in programming!
+## 🚀 Why Learn Queues?
 
-A queue is a linear data structure that follows the **FIFO (First In, First Out)** principle. Elements are added at one end (rear) and removed from the other end (front).
+Imagine standing in line at your favorite coffee shop. The first person who joined the line gets served first, and new people join at the end. You can't cut in the middle or serve someone from the back—that's exactly what a **queue** is in programming!
+
+Queues are everywhere: task scheduling in operating systems, print job management, breadth-first search in graphs, and even the way you organize your daily tasks. Mastering queues unlocks your ability to build efficient systems that process data in order.
+
+---
+
+## 🧩 What is a Queue? (With Visuals)
+
+A **queue** is a linear data structure that follows the **FIFO (First In, First Out)** principle. Elements are added at one end (rear) and removed from the other end (front).
+
+### 📦 Analogy: A Line of People
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -24,46 +34,585 @@ A queue is a linear data structure that follows the **FIFO (First In, First Out)
 └─────────────────────────────────────────────────────────┘
 ```
 
-## 🎯 Types of Queues
+- Each **person** represents an element
+- **Front** is where people get served (dequeue)
+- **Rear** is where new people join (enqueue)
+- **FIFO Order**: First person in line gets served first
+- **No cutting**: You can't access middle elements directly
 
-### 1. Simple Queue
-Basic FIFO queue with enqueue and dequeue operations.
+### 🧠 Key Properties
+- **FIFO Order**: First element added is the first one removed
+- **Two access points**: Front for removal, rear for addition
+- **Dynamic size**: Can grow and shrink as needed
+- **Fast operations**: O(1) time for enqueue, dequeue, and peek
+
+### 💡 Real-World Examples
+- Print job queue in office
+- Task scheduling in operating systems
+- Breadth-first search in graphs
+- Customer service call center
+- Order processing in e-commerce
+
+---
+
+## 🏷️ Types of Queues
+
+Queues come in different flavors! Let's explore the various types and their characteristics.
+
+### 1. Simple Queue (Linear Queue)
+- **Basic FIFO**: Standard queue with enqueue and dequeue
+- **Analogy**: A simple line of people at a store
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Simple Queue                                         │
+│                                                       │
+│  FRONT → [10] → [20] → [30] → [40] ← REAR            │
+│                                                       │
+│  Operations:                                          │
+│  Enqueue: Add at rear                                 │
+│  Dequeue: Remove from front                           │
+│  Peek: View front element                             │
+└─────────────────────────────────────────────────────────┘
+```
 
 ### 2. Circular Queue
-Queue with fixed size that reuses space when elements are dequeued.
+- **Fixed size**: Reuses space when elements are dequeued
+- **Analogy**: A circular conveyor belt that reuses positions
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Circular Queue                                       │
+│                                                       │
+│  Array: [10, 20, 30, 40, 50]                        │
+│  Index:   0   1   2   3   4                          │
+│  Front: 1, Rear: 4                                   │
+│                                                       │
+│  After dequeue: [null, 20, 30, 40, 50]               │
+│  Front: 2, Rear: 4                                   │
+│                                                       │
+│  After enqueue 60: [60, null, 30, 40, 50]            │
+│  Front: 2, Rear: 0 (wrapped around)                  │
+└─────────────────────────────────────────────────────────┘
+```
 
 ### 3. Priority Queue
-Elements are dequeued based on priority (not FIFO order).
+- **Priority-based**: Elements dequeued by priority, not FIFO
+- **Analogy**: Emergency room where critical patients go first
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Priority Queue (Min-Heap)                            │
+│                                                       │
+│        10 (highest priority)                          │
+│       /  \                                            │
+│     20    30                                          │
+│    /  \                                               │
+│   40   50                                             │
+│                                                       │
+│  Dequeue order: 10 → 20 → 30 → 40 → 50               │
+└─────────────────────────────────────────────────────────┘
+```
 
 ### 4. Double-Ended Queue (Deque)
-Elements can be added/removed from both ends.
+- **Both ends**: Can add/remove from front and rear
+- **Analogy**: A line where people can join or leave from either end
 
-## 🧠 Queue Operations
+```
+┌─────────────────────────────────────────────────────────┐
+│  Double-Ended Queue                                   │
+│                                                       │
+│  FRONT ← [10] → [20] → [30] → [40] ← REAR            │
+│           ↑              ↑              ↑              │
+│         Add/Remove    Middle        Add/Remove        │
+│         from front    Elements      from rear         │
+│                                                       │
+│  Operations:                                          │
+│  • addFirst(), removeFirst()                          │
+│  • addLast(), removeLast()                            │
+│  • peekFirst(), peekLast()                            │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### ⚡ Quick Comparison Table
+
+| Type           | Access Points | Priority | Size      | Use Case                    |
+|----------------|---------------|----------|-----------|----------------------------|
+| Simple Queue   | Front/Rear    | FIFO     | Dynamic   | Basic FIFO operations       |
+| Circular Queue | Front/Rear    | FIFO     | Fixed     | Fixed-size scenarios        |
+| Priority Queue | Front         | Priority | Dynamic   | Priority-based processing    |
+| Deque          | Both ends     | FIFO     | Dynamic   | Flexible access patterns    |
+
+---
+
+### 🕵️‍♂️ When to Use Which?
+- **Simple Queue**: For basic FIFO operations
+- **Circular Queue**: When you have fixed memory constraints
+- **Priority Queue**: When order matters (emergency systems, task scheduling)
+- **Deque**: When you need flexibility in adding/removing from both ends
+
+---
+
+## 🛠️ Core Queue Operations (With Visuals & Code)
+
+Queues are powerful because of their simple but effective operations! Here are the most important operations, explained step by step.
+
+---
 
 ### 1. Enqueue
-Add an element to the rear of the queue.
-**Time Complexity**: O(1) - Constant time
+- **What?** Add an element to the rear of the queue.
+- **Analogy:** A new person joining the end of the line.
+
+```
+Before Enqueue:    After Enqueue(50):
+FRONT → [10] → [20] → [30] ← REAR
+                    ↑
+                  New rear
+
+FRONT → [10] → [20] → [30] → [50] ← REAR
+```
+
+**Code:**
+```java
+public void enqueue(int data) {
+    if (isFull()) {
+        System.out.println("Queue Overflow!");
+        return;
+    }
+    rear = (rear + 1) % capacity;
+    arr[rear] = data;
+    size++;
+}
+```
+```python
+def enqueue(self, data):
+    if self.is_full():
+        print("Queue Overflow!")
+        return
+    self.rear = (self.rear + 1) % self.capacity
+    self.arr[self.rear] = data
+    self.size += 1
+```
+```cpp
+void enqueue(int data) {
+    if (isFull()) {
+        cout << "Queue Overflow!" << endl;
+        return;
+    }
+    rear = (rear + 1) % capacity;
+    arr[rear] = data;
+    size++;
+}
+```
+
+---
 
 ### 2. Dequeue
-Remove and return the element from the front of the queue.
-**Time Complexity**: O(1) - Constant time
+- **What?** Remove and return the element from the front of the queue.
+- **Analogy:** The first person in line getting served and leaving.
+
+```
+Before Dequeue:    After Dequeue():
+FRONT → [10] → [20] → [30] → [50] ← REAR
+         ↑
+       Remove this
+
+FRONT → [20] → [30] → [50] ← REAR
+         ↑
+       New front
+Returns: 10
+```
+
+**Code:**
+```java
+public int dequeue() {
+    if (isEmpty()) {
+        System.out.println("Queue Underflow!");
+        return -1;
+    }
+    int data = arr[front];
+    front = (front + 1) % capacity;
+    size--;
+    return data;
+}
+```
+```python
+def dequeue(self):
+    if self.is_empty():
+        print("Queue Underflow!")
+        return -1
+    data = self.arr[self.front]
+    self.front = (self.front + 1) % self.capacity
+    self.size -= 1
+    return data
+```
+```cpp
+int dequeue() {
+    if (isEmpty()) {
+        cout << "Queue Underflow!" << endl;
+        return -1;
+    }
+    int data = arr[front];
+    front = (front + 1) % capacity;
+    size--;
+    return data;
+}
+```
+
+---
 
 ### 3. Peek/Front
-View the front element without removing it.
-**Time Complexity**: O(1) - Constant time
+- **What?** View the front element without removing it.
+- **Analogy:** Looking at who's next in line without serving them.
+
+```
+Queue:              Peek Operation:
+FRONT → [10] → [20] → [30] → [50] ← REAR
+         ↑
+       Just look, don't remove
+
+Returns: 10 (queue unchanged)
+```
+
+**Code:**
+```java
+public int peek() {
+    if (isEmpty()) {
+        System.out.println("Queue is empty!");
+        return -1;
+    }
+    return arr[front];
+}
+```
+```python
+def peek(self):
+    if self.is_empty():
+        print("Queue is empty!")
+        return -1
+    return self.arr[self.front]
+```
+```cpp
+int peek() {
+    if (isEmpty()) {
+        cout << "Queue is empty!" << endl;
+        return -1;
+    }
+    return arr[front];
+}
+```
+
+---
 
 ### 4. IsEmpty
-Check if the queue is empty.
-**Time Complexity**: O(1) - Constant time
+- **What?** Check if the queue has no elements.
+- **Analogy:** Checking if there's anyone in line.
+
+```
+Empty Queue:        Non-Empty Queue:
+FRONT → null ← REAR FRONT → [10] → [20] → [30] ← REAR
+
+isEmpty: true       isEmpty: false
+```
+
+**Code:**
+```java
+public boolean isEmpty() {
+    return size == 0;
+}
+```
+```python
+def is_empty(self):
+    return self.size == 0
+```
+```cpp
+bool isEmpty() {
+    return size == 0;
+}
+```
+
+---
 
 ### 5. Size
-Get the number of elements in the queue.
-**Time Complexity**: O(1) - Constant time
+- **What?** Get the number of elements in the queue.
+- **Analogy:** Counting how many people are in line.
 
-## 💡 Example 1: Simple Queue Implementation
+```
+Queue:              Size Calculation:
+FRONT → [10] → [20] → [30] → [50] ← REAR
+         ↑              ↑              ↑
+       Element 1    Element 2    Element 3
+Size: 4
+```
+
+**Code:**
+```java
+public int size() {
+    return size;
+}
+```
+```python
+def size(self):
+    return self.size
+```
+```cpp
+int size() {
+    return size;
+}
+```
+
+---
+
+### ⏱️ Time Complexity Summary
+
+| Operation | Time Complexity | Space Complexity |
+|-----------|----------------|------------------|
+| Enqueue   | O(1)           | O(1)             |
+| Dequeue   | O(1)           | O(1)             |
+| Peek      | O(1)           | O(1)             |
+| IsEmpty   | O(1)           | O(1)             |
+| Size      | O(1)           | O(1)             |
+
+---
+
+## 🎯 Common Queue Patterns
+
+### Pattern 1: Queue for BFS (Breadth-First Search)
+**Use case:** Level-order traversal, shortest path problems.
+
+```
+Tree:                BFS Order:
+     1                Level 0: [1]
+   /   \              Level 1: [2, 3]
+  2     3             Level 2: [4, 5, 6, 7]
+ / \   / \
+4   5 6   7
+
+Queue: [1] → [2,3] → [3,4,5] → [4,5,6,7] → [5,6,7] → [6,7] → [7] → []
+```
+
+**Code:**
+```java
+public void bfs(Node root) {
+    if (root == null) return;
+    
+    Queue<Node> queue = new LinkedList<>();
+    queue.offer(root);
+    
+    while (!queue.isEmpty()) {
+        Node current = queue.poll();
+        System.out.print(current.val + " ");
+        
+        if (current.left != null) {
+            queue.offer(current.left);
+        }
+        if (current.right != null) {
+            queue.offer(current.right);
+        }
+    }
+}
+```
+
+### Pattern 2: Sliding Window with Queue
+**Use case:** Finding maximum/minimum in sliding windows.
+
+```
+Array: [1, 3, -1, -3, 5, 3, 6, 7], k = 3
+Window: [1,3,-1] → [3,-1,-3] → [-1,-3,5] → [-3,5,3] → [5,3,6] → [3,6,7]
+Max:   [3] → [3] → [5] → [5] → [6] → [7]
+```
+
+**Code:**
+```java
+public int[] maxSlidingWindow(int[] nums, int k) {
+    if (nums == null || k <= 0) return new int[0];
+    
+    int n = nums.length;
+    int[] result = new int[n - k + 1];
+    Deque<Integer> deque = new LinkedList<>();
+    
+    for (int i = 0; i < n; i++) {
+        // Remove elements outside window
+        while (!deque.isEmpty() && deque.peek() < i - k + 1) {
+            deque.poll();
+        }
+        
+        // Remove smaller elements
+        while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+            deque.pollLast();
+        }
+        
+        deque.offer(i);
+        
+        if (i >= k - 1) {
+            result[i - k + 1] = nums[deque.peek()];
+        }
+    }
+    
+    return result;
+}
+```
+
+### Pattern 3: Queue for Level Order Traversal
+**Use case:** Processing tree nodes level by level.
+
+```
+Tree:                Level Order:
+     1               Level 0: [1]
+   /   \             Level 1: [2, 3]
+  2     3            Level 2: [4, 5, 6, 7]
+ / \   / \
+4   5 6   7
+
+Result: [[1], [2,3], [4,5,6,7]]
+```
+
+**Code:**
+```java
+public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null) return result;
+    
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    
+    while (!queue.isEmpty()) {
+        int levelSize = queue.size();
+        List<Integer> level = new ArrayList<>();
+        
+        for (int i = 0; i < levelSize; i++) {
+            TreeNode current = queue.poll();
+            level.add(current.val);
+            
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+        }
+        
+        result.add(level);
+    }
+    
+    return result;
+}
+```
+
+---
+
+## 🐛 Debugging & Common Pitfalls
+
+### ❌ Common Mistakes
+
+1. **Queue Underflow**
+   ```java
+   // Bad: Dequeuing from empty queue
+   Queue<Integer> queue = new LinkedList<>();
+   int value = queue.poll(); // Returns null
+   
+   // Good: Check before dequeuing
+   if (!queue.isEmpty()) {
+       int value = queue.poll();
+   }
+   ```
+
+2. **Queue Overflow (Array-based)**
+   ```java
+   // Bad: Enqueuing to full queue
+   if (size >= capacity) {
+       // Queue is full, can't enqueue more
+   }
+   
+   // Good: Check capacity before enqueuing
+   if (size < capacity) {
+       rear = (rear + 1) % capacity;
+       arr[rear] = data;
+       size++;
+   }
+   ```
+
+3. **Forgetting to Update Size**
+   ```java
+   // Bad: Incomplete enqueue operation
+   arr[rear] = data; // Missing: size++
+   
+   // Good: Complete enqueue operation
+   arr[rear] = data;
+   size++;
+   ```
+
+### 🔧 Debugging Tips
+
+1. **Print Queue Contents**
+   ```java
+   public void printQueue() {
+       System.out.print("Queue (front to rear): ");
+       for (int i = 0; i < size; i++) {
+           int index = (front + i) % capacity;
+           System.out.print(arr[index] + " ");
+       }
+       System.out.println();
+   }
+   ```
+
+2. **Check Queue State**
+   ```java
+   System.out.println("Front: " + front);
+   System.out.println("Rear: " + rear);
+   System.out.println("Size: " + size);
+   System.out.println("Is Empty: " + isEmpty());
+   System.out.println("Is Full: " + isFull());
+   ```
+
+3. **Use Debugger**
+   - Set breakpoints in enqueue/dequeue operations
+   - Watch front and rear pointers
+   - Step through queue operations
+
+---
+
+## 🧠 Memory & Performance
+
+### How Queues Work in Memory
+
+```
+Memory Layout (Array-based):
+┌─────────────────────────────────────────┐
+│  Queue in Memory                       │
+│                                       │
+│  Base Address: 1000                   │
+│  ┌────┬────┬────┬────┬────┐          │
+│  │ 10 │ 20 │ 30 │ 40 │ 50 │          │
+│  └────┴────┴────┴────┴────┘          │
+│    ↑    ↑    ↑    ↑    ↑              │
+│  1000 1004 1008 1012 1016            │
+│                                       │
+│  Front pointer: 0 (points to first element) │
+│  Rear pointer: 4 (points to last element)   │
+└─────────────────────────────────────────┘
+```
+
+- **Contiguous memory**: Array-based queues use consecutive memory
+- **Fast access**: O(1) operations due to direct indexing
+- **Memory efficient**: Only uses space for actual elements
+- **Circular reuse**: Efficient space utilization in circular queues
+
+### Performance Considerations
+
+| Implementation | Enqueue | Dequeue | Memory | Resize |
+|----------------|---------|---------|--------|--------|
+| Array-based    | O(1)    | O(1)    | Fixed  | No     |
+| Linked List    | O(1)    | O(1)    | Dynamic| Yes    |
+| Circular Array | O(1)    | O(1)    | Fixed  | No     |
+
+---
+
+## 💡 Example 1: Basic Queue Operations
 
 ### Problem Statement
-Create a simple queue and demonstrate basic operations.
+Demonstrate basic queue operations: enqueue, dequeue, peek, and traversal.
 
 ### Visual Walkthrough
 
@@ -83,11 +632,11 @@ Create a simple queue and demonstrate basic operations.
 │  Step 4: Enqueue 30                                   │
 │  FRONT → [10] → [20] → [30] ← REAR                    │
 │                                                       │
-│  Step 5: Dequeue (remove front)                       │
-│  Dequeue: 10, FRONT → [20] → [30] ← REAR              │
+│  Step 5: Peek (view front)                            │
+│  Peek: 10 (queue unchanged)                           │
 │                                                       │
-│  Step 6: Peek (view front)                            │
-│  Peek: 20 (queue unchanged)                           │
+│  Step 6: Dequeue (remove front)                       │
+│  Dequeue: 10, FRONT → [20] → [30] ← REAR              │
 │                                                       │
 │  Step 7: Dequeue again                                │
 │  Dequeue: 20, FRONT → [30] ← REAR                     │
@@ -145,6 +694,8 @@ public class QueueBasics {
     }
 }
 ```
+
+---
 
 ## 💡 Example 2: Custom Queue Implementation
 
@@ -327,6 +878,8 @@ public class CustomQueue {
 }
 ```
 
+---
+
 ## 💡 Example 3: Circular Queue Implementation
 
 ### Problem Statement
@@ -497,6 +1050,8 @@ public class CircularQueue {
 }
 ```
 
+---
+
 ## 💡 Example 4: Priority Queue Implementation
 
 ### Problem Statement
@@ -579,110 +1134,42 @@ public class PriorityQueueDemo {
 }
 ```
 
-## 🎯 Common Queue Patterns
-
-### Pattern 1: Queue for BFS
-```java
-public void bfs(Node root) {
-    if (root == null) return;
-    
-    Queue<Node> queue = new LinkedList<>();
-    queue.offer(root);
-    
-    while (!queue.isEmpty()) {
-        Node current = queue.poll();
-        System.out.print(current.val + " ");
-        
-        if (current.left != null) {
-            queue.offer(current.left);
-        }
-        if (current.right != null) {
-            queue.offer(current.right);
-        }
-    }
-}
-```
-
-### Pattern 2: Sliding Window with Queue
-```java
-public int[] maxSlidingWindow(int[] nums, int k) {
-    if (nums == null || k <= 0) return new int[0];
-    
-    int n = nums.length;
-    int[] result = new int[n - k + 1];
-    Deque<Integer> deque = new LinkedList<>();
-    
-    for (int i = 0; i < n; i++) {
-        // Remove elements outside window
-        while (!deque.isEmpty() && deque.peek() < i - k + 1) {
-            deque.poll();
-        }
-        
-        // Remove smaller elements
-        while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
-            deque.pollLast();
-        }
-        
-        deque.offer(i);
-        
-        if (i >= k - 1) {
-            result[i - k + 1] = nums[deque.peek()];
-        }
-    }
-    
-    return result;
-}
-```
-
-### Pattern 3: Queue for Level Order Traversal
-```java
-public List<List<Integer>> levelOrder(TreeNode root) {
-    List<List<Integer>> result = new ArrayList<>();
-    if (root == null) return result;
-    
-    Queue<TreeNode> queue = new LinkedList<>();
-    queue.offer(root);
-    
-    while (!queue.isEmpty()) {
-        int levelSize = queue.size();
-        List<Integer> level = new ArrayList<>();
-        
-        for (int i = 0; i < levelSize; i++) {
-            TreeNode current = queue.poll();
-            level.add(current.val);
-            
-            if (current.left != null) {
-                queue.offer(current.left);
-            }
-            if (current.right != null) {
-                queue.offer(current.right);
-            }
-        }
-        
-        result.add(level);
-    }
-    
-    return result;
-}
-```
+---
 
 ## 🚀 Practice Problems
 
-### 🟢 Easy Level (5 Problems)
+### 🟢 Easy Level (10 Problems)
 1. **[Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)** - Stack implementation
 2. **[Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/)** - Sliding window with queue
 3. **[Moving Average from Data Stream](https://leetcode.com/problems/moving-average-from-data-stream/)** - Queue for sliding window
 4. **[Design Circular Queue](https://leetcode.com/problems/design-circular-queue/)** - Circular queue implementation
 5. **[Design Circular Deque](https://leetcode.com/problems/design-circular-deque/)** - Double-ended queue
+6. **[Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)** - Queue implementation
+7. **[First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)** - Queue for tracking
+8. **[Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/)** - Queue for rate limiting
+9. **[Design Hit Counter](https://leetcode.com/problems/design-hit-counter/)** - Queue for hit counting
+10. **[Design Phone Directory](https://leetcode.com/problems/design-phone-directory/)** - Queue for resource management
 
-### 🟡 Medium Level (3 Problems)
+### 🟡 Medium Level (10 Problems)
 1. **[Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)** - Monotonic queue
 2. **[Open the Lock](https://leetcode.com/problems/open-the-lock/)** - BFS with queue
 3. **[Perfect Squares](https://leetcode.com/problems/perfect-squares/)** - BFS approach
+4. **[Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)** - BFS with queue
+5. **[01 Matrix](https://leetcode.com/problems/01-matrix/)** - BFS for distance
+6. **[As Far from Land as Possible](https://leetcode.com/problems/as-far-from-land-as-possible/)** - BFS optimization
+7. **[Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/)** - BFS pathfinding
+8. **[Snakes and Ladders](https://leetcode.com/problems/snakes-and-ladders/)** - BFS game simulation
+9. **[Jump Game III](https://leetcode.com/problems/jump-game-iii/)** - BFS with queue
+10. **[Reach a Number](https://leetcode.com/problems/reach-a-number/)** - BFS approach
 
-### 🔴 Hard Level (2 Problems)
+### 🔴 Hard Level (5 Problems)
 1. **[Word Ladder](https://leetcode.com/problems/word-ladder/)** - BFS with queue
-2. **[Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/)** - BFS optimization
+2. **[Word Ladder II](https://leetcode.com/problems/word-ladder-ii/)** - BFS with path tracking
+3. **[Shortest Path to Get All Keys](https://leetcode.com/problems/shortest-path-to-get-all-keys/)** - BFS with state
+4. **[Minimum Moves to Reach Target with Rotations](https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/)** - BFS with complex state
+5. **[Escape a Large Maze](https://leetcode.com/problems/escape-a-large-maze/)** - BFS optimization
+
+---
 
 ## 🎨 Key Takeaways
 
@@ -691,29 +1178,43 @@ public List<List<Integer>> levelOrder(TreeNode root) {
 - Use queue for FIFO operations (BFS, task scheduling)
 - Consider circular queue for fixed-size scenarios
 - Use priority queue when order matters
+- Handle queue overflow/underflow gracefully
+- Use appropriate queue implementation for your needs
 
 ### ❌ Don'ts:
 - Don't try to access middle elements directly
-- Don't forget to handle queue overflow/underflow
+- Don't forget to check for empty queue before operations
 - Don't use queue when you need random access
 - Don't ignore the FIFO principle
+- Don't forget to handle edge cases (empty queue, single element)
+- Don't use queue for LIFO operations (use stack instead)
 
 ### 🧠 Memory Aids:
 - **"First In, First Out (FIFO)"**
 - **"Line of people"**
 - **"Enqueue to add, Dequeue to remove"**
+- **"Front for removal, Rear for addition"**
+- **"Check empty before dequeue"**
+
+---
 
 ## 🔍 Debugging Tips
 
-1. **Print queue contents** - Use helper methods to visualize
-2. **Check for empty queue** - Always verify before dequeuing
+1. **Check queue state** - Always verify if queue is empty before operations
+2. **Print queue contents** - Use helper methods to visualize
 3. **Use debugger** - Step through enqueue/dequeue operations
 4. **Test with edge cases** - Empty queue, single element, full queue
+5. **Validate input** - Check for null or invalid inputs
+6. **Monitor queue size** - Track queue growth and capacity
+
+---
 
 ## 📚 Further Reading
 
 - [GeeksforGeeks - Queue Data Structure](https://www.geeksforgeeks.org/queue-data-structure/)
 - [LeetCode - Queue Problems](https://leetcode.com/tag/queue/)
+- [HackerRank - Queue Problems](https://www.hackerrank.com/domains/data-structures?filters%5Bsubdomains%5D%5B%5D=queues)
+- [Codeforces - Queue Problems](https://codeforces.com/problemset?tags=queues)
 
 ---
 
@@ -721,4 +1222,4 @@ public List<List<Integer>> levelOrder(TreeNode root) {
 
 ---
 
-**[← Back to DSA Concepts](../README.md)** | **[Previous Topic →](03 - Stacks.md)** | **[Next Topic →](05 - Strings.md)** 
+**[← Back to DSA Concepts](../README.md)** | **[Previous Topic →](03 - Stacks.md)** | **[Next Topic →](05 - Strings.md)**
